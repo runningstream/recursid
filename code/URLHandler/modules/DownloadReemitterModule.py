@@ -92,6 +92,13 @@ class DownloadURLReemitterModule(ReemitterModule):
 
             download = next(req.iter_content(chunk_size=max_download))
             req.close()
+        except requests.exceptions.ConnectionError as e:
+            self.logger.error("Connection error while handling {}".format(
+                url))
+            return None
+        except requests.exceptions.Timeout as e:
+            self.logger.error("Timeout while handling {}".format(url))
+            return None
         except BaseException as e:
             self.logger.error("Exception during download:")
             self.logger.exception(e)
