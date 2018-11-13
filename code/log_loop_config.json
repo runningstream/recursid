@@ -1,0 +1,27 @@
+{
+    "InputEndpointModules":
+    [
+        ["EmitLinesInputEndpointModule",
+            {"text_block": "Line 1\nLine 2\nLine 3\nLine 4"}
+        ]
+    ],
+    "ReemitterModules":
+    [
+        ["URLParserReemitterModule", {}], 
+        ["LineDoubler", {}],
+        ["DownloadURLReemitterModule",
+            {
+                "max_download": 1048576,
+                "user_agents": [
+                    "wget",
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_7) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.790.0 Safari/535.1"
+                ]
+            }
+        ]
+    ],
+    "OutputEndpointModules":
+    [
+        ["LogOutputEndpointModule", {"level": "INFO"}],
+        ["LogstashOutputEndpointModule", {"host": "localhost", "port": 15539}]
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "start_ttl": 10,
+    "InputEndpointModules":
+    [
+        ["FluentdJSONFileInputEndpointModule",
+            {"filename": "{fluentjsonfile}"}]
+    ],
+    "ReemitterModules":
+    [
+        ["URLParserReemitterModule", {}], 
+        ["DownloadURLReemitterModule",
+            {
+                "max_download": 1048576,
+                "user_agents": [
+                    "wget",
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_7) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.790.0 Safari/535.1"
+                ]
+            }
+        ]
+    ],
+    "OutputEndpointModules":
+    [
+        ["LogOutputEndpointModule", {"level": "INFO"}],
+        ["LocalStoreDownloadedObject", {"output_dir": "download_dir"}],
+        ["S3StoreDownloadedObject",
+            {"s3_bucket": "test-bucket",
+                "aws_profile": "test-bucket"}
+        ],
+        ["SQLLiteRememberDownloadedObjects",
+            {"db_filename": "download_db.sqlite3",
+                "db_table": "framework_downloads"}
+        ]
+    ]
+}
