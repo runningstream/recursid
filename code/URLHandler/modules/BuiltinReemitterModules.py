@@ -15,12 +15,10 @@ class URLParserReemitterModule(ReemitterModule):
     supported_objects = [FluentdRecord, DownloadedObject]
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.url_str_re = re.compile(
-                "(https?(?::|%3A)(?:/|%2F)(?:/|%2F).*?)(?:[\s;\"]|$)"
-                )
-        self.url_bytes_re = re.compile(
-                b"(https?(?::|%3A)(?:/|%2F)(?:/|%2F).*?)(?:[\s;\"]|$)"
-                )
+        re_str = "(https?(?::|%3A)(?:/|%2F)(?:/|%2F).*?)"\
+                "(?:\s|%20|;|%3b|\"|%22|\'|%27|$)"
+        self.url_str_re = re.compile(re_str)
+        self.url_bytes_re = re.compile(re_str.encode())
 
     def handle_object(self, input_obj):
         if issubclass(input_obj.__class__, FluentdRecord):
