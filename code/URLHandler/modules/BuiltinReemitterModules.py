@@ -16,7 +16,7 @@ class URLParserReemitterModule(ReemitterModule):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         re_str = "(https?(?::|%3A)(?:/|%2F)(?:/|%2F).*?)"\
-                "(?:\s|%20|;|%3b|\"|%22|\'|%27|$)"
+                "(?:\+|\s|%20|;|%3b|\"|%22|\'|%27|$)"
         self.url_str_re = re.compile(re_str)
         self.url_bytes_re = re.compile(re_str.encode())
 

