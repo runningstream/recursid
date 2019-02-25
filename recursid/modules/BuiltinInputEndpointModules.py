@@ -1,6 +1,6 @@
 from queue import Empty
-
 import json
+
 import msgpack
 import zmq
 

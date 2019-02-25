@@ -1,0 +1,14 @@
+[Unit]
+Description=recursid
+
+[Service]
+Type=simple
+User=nobody
+Group=nobody
+ExecStart=/home/ubuntu/URLHandlerFramework/url_handler_multithread_framework.py /home/ubuntu/URLHandlerFrameworkConfig.json
+Restart=always
+RestartSec=10
+WorkingDirectory=/
+
+[Install]
+WantedBy=multi-user.target

@@ -5,7 +5,7 @@ import itertools as it
 import logging
 import json
 
-from URLHandler.MultithreadedFramework import MultithreadedFramework
+from recursid.MultithreadedFramework import MultithreadedFramework
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
