@@ -1,4 +1,4 @@
-# Recursid
+# R3cuR$1d
 
 ## Description
 This is a framework for reading data from sources, processing it to produce more data, then outputting it somewhere to sinks.
@@ -14,3 +14,25 @@ A reemitter module might take a Log Line or a Downloaded File, look for any URLs
 An output module might take Downloaded Files and record information in a database about their URL and the hash of the downloaded data.
 
 This type of flexible system makes recursive handling of data producing other data simple, but can lead to infinite loops.  That's why objects produced by input modules get a "time-to-live" value, and any time a reemitter module produces a new object based on that input object, the new object gets a "time-to-live" one less than the original.  Output modules do not produce any inputs, only reemitter modules can produce this looping behavior.
+
+## Building
+Run `./build_dist.sh`, the package is in `dist` now.
+
+## Installing
+To install Recursid and have it execute at startup, run:
+
+```bash
+sudo pip3 install dist/Recursid-0.1.0-py3-none-any.whl
+sudo cp /usr/local/lib/python3.*/site-packages/recursid/etc/systemd/system/recursid.service /etc/systemd/system
+```
+
+Now modify `/etc/systemd/system/recursid.service` to reflect the config.json file you want recursid to use.  Examples are in `/usr/local/lib/python3.*/site-packages/recursid/etc/recursid`.  You can place your config file anywhere nobody/nogroup will be able to read, as that is who Recursid will run as.
+
+You can test your configuration file via `/usr/local/bin/recursid_multithread.py` or `/usr/local/bin/recursid_multiprocess.py`, specifying the desired configuration file as argument.
+
+Now running the commands below will cause recursid to execute at startup.
+
+```bash
+sudo systemctl enable recursid
+sudo service recursid restart
+```
