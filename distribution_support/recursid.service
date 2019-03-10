@@ -4,8 +4,8 @@ Description=recursid
 [Service]
 Type=simple
 User=nobody
-Group=nobody
-ExecStart=/usr/local/bin/recursid_multithread.py /usr/local/lib/python3.7/site-packages/recursid/etc/recursid/fluentd_json_url_handle.json
+Group=nogroup
+ExecStart=/usr/local/bin/recursid_multithread.py /usr/local/etc/recursid/recursid.json
 Restart=always
 RestartSec=10
 WorkingDirectory=/
