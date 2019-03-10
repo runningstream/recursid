@@ -7,7 +7,7 @@ setup(
     author='Running Stream',
     author_email='runningstreamllc@gmail.com',
     packages=['recursid', 'recursid.modules'],
-    scripts=['bin/recursid.py','bin/recursid_multithread.py'],
+    scripts=['bin/recursid_multiprocess.py','bin/recursid_multithread.py'],
     url='https://github.com/runningstream/recursid/',
     license='LICENSE.md',
     description='Recursive data processing framework.',

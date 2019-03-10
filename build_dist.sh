@@ -11,7 +11,7 @@ mkdir -p "${SYSTEMD_FOLDER}"
 
 cp "${DIST_SPT}/recursid.service" "${SYSTEMD_FOLDER}"
 cp recursid_multithread.py "${BIN_FOLDER}"
-cp recursid.py "${BIN_FOLDER}"
+cp recursid_multiprocess.py "${BIN_FOLDER}"
 cp -r recursid "${MODULE_DEST}"
 
 cp "${DIST_SPT}/setup.py" "${DIST_FOLDER}"
