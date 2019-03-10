@@ -26,7 +26,7 @@ sudo pip3 install dist/Recursid-0.1.0-py3-none-any.whl
 sudo cp /usr/local/lib/python3.*/site-packages/recursid/etc/systemd/system/recursid.service /etc/systemd/system
 ```
 
-Now modify `/etc/systemd/system/recursid.service` to reflect the config.json file you want recursid to use.  Examples are in `/usr/local/lib/python3.*/site-packages/recursid/etc/recursid`.  You can place your config file anywhere nobody/nogroup will be able to read, as that is who Recursid will run as.
+Now modify `/etc/systemd/system/recursid.service` to reflect the config.json file you want recursid to use, or copy your config into `/usr/local/etc/recursid/recursid.json`.  Examples are in `/usr/local/lib/python3.*/site-packages/recursid/etc/recursid`.  You can place your config file anywhere nobody/nogroup will be able to read, as that is who Recursid will run as.
 
 You can test your configuration file via `/usr/local/bin/recursid_multithread.py` or `/usr/local/bin/recursid_multiprocess.py`, specifying the desired configuration file as argument.
 
