@@ -22,6 +22,7 @@ cp "${DIST_SPT}/setup.py" "${DIST_FOLDER}"
 cp "${DIST_SPT}/MANIFEST.in" "${DIST_FOLDER}"
 cp "LICENSE.md" "${DIST_FOLDER}"
 cp README.md "${DIST_FOLDER}"
+cp version "${DIST_FOLDER}"
 
 
 PRE_DIR="$(pwd)"

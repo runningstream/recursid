@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='Recursid',
-    version='0.1.0',
+    version=open('version').read().strip(),
     author='Running Stream',
     author_email='runningstreamllc@gmail.com',
     packages=['recursid', 'recursid.modules'],
