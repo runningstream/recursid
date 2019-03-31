@@ -38,8 +38,14 @@ class DownloadURLReemitterModule(ReemitterModule):
         if self.is_in_recent_downloads(input_obj):
             return []
 
+        # Parse the domain for the next checks
+        try:
+            domain = urllib.parse.urlparse(input_obj.url).netloc
+        except ValueError as e:
+            self.logger.error("Urlparse ValueError for {}".format(input_obj.url))
+            return []
+
         # Make sure domain isn't in blacklist...
-        domain = urllib.parse.urlparse(input_obj.url).netloc
         if any(domain.endswith(bl_dom) for bl_dom in domain_blacklist):
             self.logger.info("Skipping download of {} - "
                     "domain is blacklisted".format(input_obj.url))
