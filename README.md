@@ -36,3 +36,5 @@ Now running the commands below will cause recursid to execute at startup.
 sudo systemctl enable recursid
 sudo service recursid restart
 ```
+
+If you're using the sqlite3 output module, as some of the sample configurations use, you'll have to create the directory where sqlite3 must put the database.  Make sure you make it read/write/execute for nobody/nogroup, so Recursid can write there.
