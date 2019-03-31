@@ -148,8 +148,8 @@ class BaseFramework:
         Continuously loop, handling objects, until death
         After death, join all the modules
         """
-        iems_still_available = True
-        while iems_still_available and not self.time_to_die:
+        iems_rems_oems_still_available = True
+        while iems_rems_oems_still_available and not self.time_to_die:
             objs_handled_last_time = True
             while objs_handled_last_time:
                 objs_handled_last_time = self.processing_iteration()
@@ -159,7 +159,16 @@ class BaseFramework:
             iems_live = (iem["process"].is_alive() for iem in self.iems)
             if not any(iems_live):
                 self.logger.debug("All IEMs found dead")
-                iems_still_available = False
+                iems_rems_oems_still_available = False
+
+            # If any rems or oems have died, allow the process to die too.
+            # Rems and oems shouldn't die until commanded to at shutdown,
+            # currently.
+            rems_live = (rem["process"].is_alive() for rem in self.rems)
+            oems_live = (oem["process"].is_alive() for oem in self.oems)
+            if not (all(rems_live) and all(oems_live)):
+                self.logger.debug("Some REM or OEM found dead - dying")
+                iems_rems_oems_still_available = False
 
         # Tell any remaining iems to die - for instance, if we initiated
         # shutdown for any reason other than all the iems dying
