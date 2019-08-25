@@ -23,5 +23,6 @@ setup(
         "boto3 >= 1.9.0",
         "pyzmq >= 17.1.2",
         "msgpack >= 0.6.0",
+        "python-magic >= 0.4.3",
     ],
 )

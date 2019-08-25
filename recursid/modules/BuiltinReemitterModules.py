@@ -11,6 +11,13 @@ class LineDoubler(ReemitterModule):
     def handle_object(self, input_obj):
         return [LogEntry(input_obj.log_data + input_obj.log_data)]
 
+class FileTypedBinaryReemitterModule(ReemitterModule):
+    supported_objects = [BinaryBlobObject]
+
+    def handle_object(self, input_obj: BinaryBlobObject) -> \
+            FileTypedBinaryObject:
+        return FileTypedBinaryObject(input_obj.content)
+
 class URLParserReemitterModule(ReemitterModule):
     supported_objects = [FluentdRecord, DownloadedObject]
     def __init__(self, *args, **kwargs):

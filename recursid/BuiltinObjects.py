@@ -2,6 +2,8 @@ import hashlib
 import json
 from typing import Iterable, Any, Union
 
+import magic
+
 from .BaseObject import BaseObject
 from .utilities import convert_bytes_to_str
 
@@ -36,17 +38,33 @@ class URLObject(BaseObject):
     def str_content(self):
         return self.url
 
-class DownloadedObject(BaseObject):
+class BinaryBlobObject(BaseObject):
+    def __init__(self, content: bytes):
+        self.content = content
+
+    def str_content(self):
+        return convert_bytes_to_str(self.content[:1024])
+
+class DownloadedObject(BinaryBlobObject):
     def __init__(self, url: str, user_agent: str, content: bytes):
+        super().__init__(content = content)
         self.url = convert_bytes_to_str(url)
         self.user_agent = user_agent
-        self.content = content
         self.hashdig = hashlib.sha256(content).hexdigest()
 
     def str_content(self):
-        content_for_output = convert_bytes_to_str(self.content[:1024])
         return "URL: {}\nUser-Agent: {}\nSHA256 Hash: {}\n"\
                 "Head Content: {}".format(
                         self.url, self.user_agent, self.hashdig,
-                        content_for_output
+                        super().str_content()
                         )
+
+class FileTypedBinaryObject(BinaryBlobObject):
+    def __init__(self, content: bytes):
+        super().__init__(content = content)
+        self.filetype = magic.from_buffer(content)
+
+    def str_content(self):
+        return "Type: {}\nHead Content: {}".format(
+            self.filetype, super().str_content()
+            )
