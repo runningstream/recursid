@@ -8,6 +8,7 @@ from .BuiltinOutputEndpointModules import LogOutputEndpointModule, \
         SQLLiteRememberDownloadedObjects, LogstashOutputEndpointModule
 from .BuiltinReemitterModules import LineDoubler, URLParserReemitterModule
 from .DownloadReemitterModule import DownloadURLReemitterModule
+from .VirusTotalReemitterModule import VirusTotalReemitterModule
 
 all_iems = dict()
 all_rems = dict()
@@ -44,6 +45,6 @@ def registerOEM(module):
 
 [registerIEM(cls) for cls in [FluentdJSONFileInputEndpointModule, EmitLinesInputEndpointModule, FluentdZMQInputEndpointModule]]
 
-[registerREM(cls) for cls in [LineDoubler, URLParserReemitterModule, DownloadURLReemitterModule]]
+[registerREM(cls) for cls in [LineDoubler, URLParserReemitterModule, DownloadURLReemitterModule, VirusTotalReemitterModule]]
 
 [registerOEM(cls) for cls in [LogOutputEndpointModule, LocalStoreDownloadedObject, S3StoreDownloadedObject, SQLLiteRememberDownloadedObjects, LogstashOutputEndpointModule]]

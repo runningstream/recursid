@@ -6,6 +6,13 @@ from .BaseModules import ReemitterModule
 from ..BuiltinObjects import LogEntry, DownloadedObject
 
 class VirusTotalReemitterModule(ReemitterModule):
+    """
+    A reemitter module that submits executable downloads to VirusTotal
+
+    Configuration:
+    api_key - your VirusTotal API key
+    """
+
     VT_API_RATE = 60/4 # seconds - 4 per minute max API use rate...
     supported_objects = [DownloadedObject]
     last_api_req = None
