@@ -1,6 +1,7 @@
 import itertools as it
 import re
 from typing import Iterable
+import urllib.parse
 
 from ..BuiltinObjects import FluentdRecord, URLObject, \
         LogEntry, DownloadedObject
