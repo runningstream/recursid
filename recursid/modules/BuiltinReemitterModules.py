@@ -40,10 +40,20 @@ class URLParserReemitterModule(ReemitterModule):
         """
         return self.url_bytes_re.findall(data)
 
+    def unquote_if_necessary(self, url):
+        """
+        If a URL needs unquoting to be valid, unquote it.
+        Otherwise return unchanged.
+        """
+        if "://" in url:
+            return url
+        return urllib.parse.unquote(url) 
+
     def handle_downloaded_obj(self, input_obj: DownloadedObject) \
             -> Iterable[URLObject]:
         url_set = set(self.find_urls_in_bytes(input_obj.content))
-        return [URLObject(url) for url in url_set]
+        urls_fixed = (self.unquote_if_necessary(url) for url in url_set)
+        return [URLObject(url) for url in urls_fixed]
     
     def handle_fluentd_record(self, input_obj: FluentdRecord) \
             -> Iterable[URLObject]:
@@ -65,4 +75,5 @@ class URLParserReemitterModule(ReemitterModule):
             it.chain.from_iterable(self.find_urls_in_str(search)
                 for search in tosearch)
             )
-        return [URLObject(url) for url in urls]
+        urls_fixed = (self.unquote_if_necessary(url) for url in urls)
+        return [URLObject(url) for url in urls_fixed]
