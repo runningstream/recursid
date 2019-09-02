@@ -2,7 +2,7 @@
 
 import unittest
 
-from URLHandler.modules.BuiltinReemitterModules import \
+from recursid.modules.BuiltinReemitterModules import \
         URLParserReemitterModule
 
 class Test_Reemitter(unittest.TestCase):
