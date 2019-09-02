@@ -17,7 +17,7 @@ class Test_Reemitter(unittest.TestCase):
                         ]
                     ),
                 ("https%3A/%2Fall.kinds%2Fasdf.lwej?qwer",
-                    ["https%3A/%2Fall.kinds%2Fasdf.lwej?qwer",
+                    ["https://all.kinds/asdf.lwej?qwer",
                         ]
                     ),
                 ("https://all.kinds/asdf.lwej?qwer more.com "

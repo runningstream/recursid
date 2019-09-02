@@ -33,28 +33,28 @@ class URLParserReemitterModule(ReemitterModule):
         """
         Look for straightforward urls using an re in the block of text data
         """
-        return self.url_str_re.findall(data)
+        def str_unquoter(url):
+            if "://" in url:
+                return url
+            return urllib.parse.unquote(url) 
+        urls = self.url_str_re.findall(data)
+        return [str_unquoter(url) for url in urls]
 
     def find_urls_in_bytes(self, data: bytes):
         """
         Look for straightforward urls using an re in the block of text data
         """
-        return self.url_bytes_re.findall(data)
-
-    def unquote_if_necessary(self, url):
-        """
-        If a URL needs unquoting to be valid, unquote it.
-        Otherwise return unchanged.
-        """
-        if "://" in url:
-            return url
-        return urllib.parse.unquote(url) 
+        def byte_unquoter(url):
+            if b"://" in url:
+                return url
+            return urllib.parse.unquote_to_bytes(url) 
+        urls = self.url_bytes_re.findall(data)
+        return [byte_unquoter(url) for url in urls]
 
     def handle_downloaded_obj(self, input_obj: DownloadedObject) \
             -> Iterable[URLObject]:
         url_set = set(self.find_urls_in_bytes(input_obj.content))
-        urls_fixed = (self.unquote_if_necessary(url) for url in url_set)
-        return [URLObject(url) for url in urls_fixed]
+        return [URLObject(url) for url in url_set]
     
     def handle_fluentd_record(self, input_obj: FluentdRecord) \
             -> Iterable[URLObject]:
@@ -76,5 +76,4 @@ class URLParserReemitterModule(ReemitterModule):
             it.chain.from_iterable(self.find_urls_in_str(search)
                 for search in tosearch)
             )
-        urls_fixed = (self.unquote_if_necessary(url) for url in urls)
-        return [URLObject(url) for url in urls_fixed]
+        return [URLObject(url) for url in urls]
