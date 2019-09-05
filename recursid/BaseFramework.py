@@ -6,13 +6,14 @@ import threading as thr
 from queue import Queue
 from typing import List, Tuple, Dict, Any, Optional, Union
 
-from .CommandQueueCommands import DIE as CQC_DIE
+from .CommandQueueCommands import CQC_DIE, CQC_RES
 from .BuiltinObjects import DeathLog
 from .modules.BuiltinInputEndpointModules import ReemitInputEndpointModule
 from .modules import all_iems, all_rems, all_oems
 from .modules.BaseModules import BaseModule
 
 DEFAULT_START_TTL = 5
+DEFAULT_RESOURCE_LOG_PERIOD = 60 # seconds
 PROCESSING_LOOP_SLEEP = .1
 
 class BaseFramework:
@@ -63,6 +64,7 @@ class BaseFramework:
         self.logger = logging.getLogger(self.__class__.__name__)
         self.start_ttl = start_ttl if start_ttl is not None else \
                 DEFAULT_START_TTL
+        self.last_res_log_time = time.time()
 
         # Recover the actual module classes from each module name
         # Errors will be raised here if a module doesn't exist/isn't registed
@@ -142,6 +144,20 @@ class BaseFramework:
         Tell just the iems to die
         """
         self.__command_death(self.iems)
+
+    def log_module_resource_usage(self,
+            period_secs : int = DEFAULT_RESOURCE_LOG_PERIOD) -> None:
+        """
+        Periodically tell each module to log its resource usage
+        """
+        if self.last_res_log_time is None:
+            self.last_res_log_time = time.time()
+            return
+        if (time.time() - self.last_res_log_time) < period_secs:
+            return
+        for em in it.chain(self.iems, self.rems, self.oems, [self.reemitter]):
+            em["cmd_queue"].put(CQC_RES)
+
 
     def main(self) -> None:
         """
@@ -223,6 +239,9 @@ class BaseFramework:
         returns: True if any objects were handled
         """
         some_object_handled = False
+
+        self.log_module_resource_usage()
+
         # Check each InputEndpointModules for one input object
         iem_recv = (iem["recv_queue"]
                 for iem in (self.iems + [self.reemitter])

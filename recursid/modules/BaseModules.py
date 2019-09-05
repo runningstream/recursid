@@ -4,7 +4,7 @@ from queue import Queue, Empty
 import time
 from typing import Optional, Iterable
 
-from ..CommandQueueCommands import DIE as CQC_DIE
+from ..CommandQueueCommands import CQC_DIE, CQC_RES
 from ..BaseObject import BaseObject
 
 HANDLER_LOOP_SLEEP = .1
@@ -61,13 +61,14 @@ class BaseModule:
 
         self.CMD_HANDLERS = {
                 CQC_DIE: self.command_die,
+                CQC_RES: self.command_log_resources,
                 }
 
         self.starting_ttl = starting_ttl
         self.time_to_die = False
         self.logger = logging.getLogger(self.__class__.__name__)
 
-    def log_resource_usage(self) -> None:
+    def command_log_resources(self) -> None:
         """
         Output, via logging, current resource usage, including queue sizes
         """
@@ -80,7 +81,7 @@ class BaseModule:
 
     def command_die(self) -> None:
         """
-        Command handler for the DIE command
+        Command handler for the CQC_DIE command
         """
         self.time_to_die = True
 
