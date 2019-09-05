@@ -67,6 +67,17 @@ class BaseModule:
         self.time_to_die = False
         self.logger = logging.getLogger(self.__class__.__name__)
 
+    def log_resource_usage(self) -> None:
+        """
+        Output, via logging, current resource usage, including queue sizes
+        """
+        self.logger.info("Queue sizes - recv obj {} send obj {} recv cmd {}"
+                "".format(self.recv_obj_queue.qsize(),
+                        self.send_obj_queue.qsize(),
+                        self.recv_cmd_queue.qsize()
+                        )
+                )
+
     def command_die(self) -> None:
         """
         Command handler for the DIE command
