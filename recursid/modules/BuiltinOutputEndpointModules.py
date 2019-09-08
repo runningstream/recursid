@@ -40,7 +40,7 @@ class LogstashOutputEndpointModule(OutputEndpointModule):
     def setup_logger(self, host: str, port: int,
             protocol: Optional[str] = None):
         if self.logstash_logger is None:
-            self.logstash_logger = logging.getLogger("URLFrameworkLogstash")
+            self.logstash_logger = logging.getLogger("RecursidLogstash")
             self.logstash_logger.setLevel(logging.INFO)
             self.logstash_logger.propagate = False
             
