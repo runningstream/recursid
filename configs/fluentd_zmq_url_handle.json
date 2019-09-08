@@ -56,7 +56,8 @@
         ["LogstashOutputEndpointModule", {"host": "localhost", "port": 10518}],
         ["S3StoreDownloadedObject",
             {"s3_bucket": "repository",
-             "region_name": "us-east-2"}
+             "region_name": "us-east-2",
+             "filetype_contains": ["Executable"]}
         ],
         ["SQLLiteRememberDownloadedObjects",
             {"db_filename": "download_db.sqlite3",

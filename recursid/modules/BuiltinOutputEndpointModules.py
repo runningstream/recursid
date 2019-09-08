@@ -99,9 +99,36 @@ class S3StoreDownloadedObject(OutputEndpointModule):
         """
         self.last_s3_list.append(name)
 
-    def handle_object(self, input_obj: DownloadedObject, s3_bucket: str,
+    def is_right_filetype(self, input_obj: DownloadedObject,
+            filetype_contains: Optional[List[str]]):
+        """
+        Return true if the filetype of input_obj contains any
+        substring in filetype_contains
+
+        If filetype_contains is None or is empty, always return True
+        """
+        if not filetype_contains:
+            return True
+
+        return any((ftype in input_obj.filetype)
+                for ftype in filetype_contains
+                )
+
+    def handle_object(self, input_obj: DownloadedObject, 
+            filetype_contains: Optional[List[str]]=None,
+            s3_bucket: str,
             aws_profile: Optional[str]=None,
             region_name: Optional[str]=None):
+        """
+        Handles input_obj of type DownloadedObject, stores them in s3_bucket
+        for given profile and region if the object's filetype string contains
+        any substrings in filetype_contains's list.
+        """
+        # Verify the filetype is desired
+        if not self.is_right_filetype(input_obj, filetype_contains):
+            self.logger.info("File {} is wrong filetype".format(input_obj.url))
+            return
+
         bucket_files = self.list_bucket_files(s3_bucket, aws_profile,
                 region_name)
         if input_obj.hashdig not in bucket_files:
