@@ -1,0 +1,608 @@
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 5
+Content:
+Line 1
+Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 5
+Content:
+Line 2
+Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 5
+Content:
+Line 3
+Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 5
+Content:
+Line 4
+Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 4
+Content:
+Line 1Line 1
+Ancestors:
+  Object Type: LogEntry
+  TTL: 5
+  Content:
+  Line 1
+  Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 4
+Content:
+Line 2Line 2
+Ancestors:
+  Object Type: LogEntry
+  TTL: 5
+  Content:
+  Line 2
+  Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 4
+Content:
+Line 3Line 3
+Ancestors:
+  Object Type: LogEntry
+  TTL: 5
+  Content:
+  Line 3
+  Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 4
+Content:
+Line 4Line 4
+Ancestors:
+  Object Type: LogEntry
+  TTL: 5
+  Content:
+  Line 4
+  Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 3
+Content:
+Line 1Line 1Line 1Line 1
+Ancestors:
+  Object Type: LogEntry
+  TTL: 4
+  Content:
+  Line 1Line 1
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 5
+    Content:
+    Line 1
+    Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 3
+Content:
+Line 2Line 2Line 2Line 2
+Ancestors:
+  Object Type: LogEntry
+  TTL: 4
+  Content:
+  Line 2Line 2
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 5
+    Content:
+    Line 2
+    Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 3
+Content:
+Line 3Line 3Line 3Line 3
+Ancestors:
+  Object Type: LogEntry
+  TTL: 4
+  Content:
+  Line 3Line 3
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 5
+    Content:
+    Line 3
+    Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 3
+Content:
+Line 4Line 4Line 4Line 4
+Ancestors:
+  Object Type: LogEntry
+  TTL: 4
+  Content:
+  Line 4Line 4
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 5
+    Content:
+    Line 4
+    Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 2
+Content:
+Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+Ancestors:
+  Object Type: LogEntry
+  TTL: 3
+  Content:
+  Line 1Line 1Line 1Line 1
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 4
+    Content:
+    Line 1Line 1
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 5
+      Content:
+      Line 1
+      Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 2
+Content:
+Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+Ancestors:
+  Object Type: LogEntry
+  TTL: 3
+  Content:
+  Line 2Line 2Line 2Line 2
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 4
+    Content:
+    Line 2Line 2
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 5
+      Content:
+      Line 2
+      Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 2
+Content:
+Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+Ancestors:
+  Object Type: LogEntry
+  TTL: 3
+  Content:
+  Line 3Line 3Line 3Line 3
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 4
+    Content:
+    Line 3Line 3
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 5
+      Content:
+      Line 3
+      Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 2
+Content:
+Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+Ancestors:
+  Object Type: LogEntry
+  TTL: 3
+  Content:
+  Line 4Line 4Line 4Line 4
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 4
+    Content:
+    Line 4Line 4
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 5
+      Content:
+      Line 4
+      Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 1
+Content:
+Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+Ancestors:
+  Object Type: LogEntry
+  TTL: 2
+  Content:
+  Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 3
+    Content:
+    Line 1Line 1Line 1Line 1
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 4
+      Content:
+      Line 1Line 1
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 5
+        Content:
+        Line 1
+        Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 1
+Content:
+Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+Ancestors:
+  Object Type: LogEntry
+  TTL: 2
+  Content:
+  Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 3
+    Content:
+    Line 2Line 2Line 2Line 2
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 4
+      Content:
+      Line 2Line 2
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 5
+        Content:
+        Line 2
+        Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 1
+Content:
+Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+Ancestors:
+  Object Type: LogEntry
+  TTL: 2
+  Content:
+  Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 3
+    Content:
+    Line 3Line 3Line 3Line 3
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 4
+      Content:
+      Line 3Line 3
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 5
+        Content:
+        Line 3
+        Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 1
+Content:
+Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+Ancestors:
+  Object Type: LogEntry
+  TTL: 2
+  Content:
+  Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 3
+    Content:
+    Line 4Line 4Line 4Line 4
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 4
+      Content:
+      Line 4Line 4
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 5
+        Content:
+        Line 4
+        Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 0
+Content:
+Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+Ancestors:
+  Object Type: LogEntry
+  TTL: 1
+  Content:
+  Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 2
+    Content:
+    Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 3
+      Content:
+      Line 1Line 1Line 1Line 1
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 4
+        Content:
+        Line 1Line 1
+        Ancestors:
+          Object Type: LogEntry
+          TTL: 5
+          Content:
+          Line 1
+          Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 0
+Content:
+Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+Ancestors:
+  Object Type: LogEntry
+  TTL: 1
+  Content:
+  Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 2
+    Content:
+    Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 3
+      Content:
+      Line 2Line 2Line 2Line 2
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 4
+        Content:
+        Line 2Line 2
+        Ancestors:
+          Object Type: LogEntry
+          TTL: 5
+          Content:
+          Line 2
+          Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 0
+Content:
+Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+Ancestors:
+  Object Type: LogEntry
+  TTL: 1
+  Content:
+  Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 2
+    Content:
+    Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 3
+      Content:
+      Line 3Line 3Line 3Line 3
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 4
+        Content:
+        Line 3Line 3
+        Ancestors:
+          Object Type: LogEntry
+          TTL: 5
+          Content:
+          Line 3
+          Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: LogEntry
+TTL: 0
+Content:
+Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+Ancestors:
+  Object Type: LogEntry
+  TTL: 1
+  Content:
+  Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 2
+    Content:
+    Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 3
+      Content:
+      Line 4Line 4Line 4Line 4
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 4
+        Content:
+        Line 4Line 4
+        Ancestors:
+          Object Type: LogEntry
+          TTL: 5
+          Content:
+          Line 4
+          Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: DeathLog
+TTL: 0
+Content:
+Object died!
+Ancestors:
+  Object Type: LogEntry
+  TTL: -1
+  Content:
+  Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 0
+    Content:
+    Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 1
+      Content:
+      Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 2
+        Content:
+        Line 1Line 1Line 1Line 1Line 1Line 1Line 1Line 1
+        Ancestors:
+          Object Type: LogEntry
+          TTL: 3
+          Content:
+          Line 1Line 1Line 1Line 1
+          Ancestors:
+            Object Type: LogEntry
+            TTL: 4
+            Content:
+            Line 1Line 1
+            Ancestors:
+              Object Type: LogEntry
+              TTL: 5
+              Content:
+              Line 1
+              Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: DeathLog
+TTL: 0
+Content:
+Object died!
+Ancestors:
+  Object Type: LogEntry
+  TTL: -1
+  Content:
+  Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 0
+    Content:
+    Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 1
+      Content:
+      Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 2
+        Content:
+        Line 2Line 2Line 2Line 2Line 2Line 2Line 2Line 2
+        Ancestors:
+          Object Type: LogEntry
+          TTL: 3
+          Content:
+          Line 2Line 2Line 2Line 2
+          Ancestors:
+            Object Type: LogEntry
+            TTL: 4
+            Content:
+            Line 2Line 2
+            Ancestors:
+              Object Type: LogEntry
+              TTL: 5
+              Content:
+              Line 2
+              Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: DeathLog
+TTL: 0
+Content:
+Object died!
+Ancestors:
+  Object Type: LogEntry
+  TTL: -1
+  Content:
+  Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 0
+    Content:
+    Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 1
+      Content:
+      Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 2
+        Content:
+        Line 3Line 3Line 3Line 3Line 3Line 3Line 3Line 3
+        Ancestors:
+          Object Type: LogEntry
+          TTL: 3
+          Content:
+          Line 3Line 3Line 3Line 3
+          Ancestors:
+            Object Type: LogEntry
+            TTL: 4
+            Content:
+            Line 3Line 3
+            Ancestors:
+              Object Type: LogEntry
+              TTL: 5
+              Content:
+              Line 3
+              Ancestors:
+
+INFO:LogOutputEndpointModule:Object Type: DeathLog
+TTL: 0
+Content:
+Object died!
+Ancestors:
+  Object Type: LogEntry
+  TTL: -1
+  Content:
+  Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+  Ancestors:
+    Object Type: LogEntry
+    TTL: 0
+    Content:
+    Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+    Ancestors:
+      Object Type: LogEntry
+      TTL: 1
+      Content:
+      Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+      Ancestors:
+        Object Type: LogEntry
+        TTL: 2
+        Content:
+        Line 4Line 4Line 4Line 4Line 4Line 4Line 4Line 4
+        Ancestors:
+          Object Type: LogEntry
+          TTL: 3
+          Content:
+          Line 4Line 4Line 4Line 4
+          Ancestors:
+            Object Type: LogEntry
+            TTL: 4
+            Content:
+            Line 4Line 4
+            Ancestors:
+              Object Type: LogEntry
+              TTL: 5
+              Content:
+              Line 4
+              Ancestors:
+
