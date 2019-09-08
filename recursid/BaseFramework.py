@@ -155,6 +155,7 @@ class BaseFramework:
             return
         if (time.time() - self.last_res_log_time) < period_secs:
             return
+        self.last_res_log_time = time.time()
         for em in it.chain(self.iems, self.rems, self.oems, [self.reemitter]):
             em["cmd_queue"].put(CQC_RES)
 
