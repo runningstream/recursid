@@ -174,6 +174,7 @@ class ReemitterModule(BaseModule):
         while self.framework_still_running():
             with self.processing_lock:
                 while not self.recv_obj_queue.empty():
+                    self.handle_command_queue()
                     input_obj = self.recv_obj_queue.get()
                     new_objs = self.handle_object(input_obj, *args, **kwargs)
                     if new_objs:
@@ -202,6 +203,7 @@ class OutputEndpointModule(BaseModule):
         while self.framework_still_running():
             with self.processing_lock:
                 while not self.recv_obj_queue.empty():
+                    self.handle_command_queue()
                     input_obj = self.recv_obj_queue.get()
                     new_objs = self.handle_object(input_obj, *args, **kwargs)
             time.sleep(HANDLER_LOOP_SLEEP)
