@@ -6,7 +6,7 @@ import os.path
 import sqlite3
 import string
 import time
-from typing import Optional, Union
+from typing import Optional, Union, List
 
 import boto3
 import logstash
