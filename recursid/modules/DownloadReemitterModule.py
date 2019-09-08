@@ -3,14 +3,15 @@ import itertools as it
 import re
 import urllib
 import time
-from typing import Iterable, List
+from typing import Iterable, List, Union
 
 import requests
 
 from ..BuiltinObjects import URLObject, DownloadedObject, LogEntry
 from .BaseModules import ReemitterModule
 
-DEFAULT_GET_TIMEOUT = 5
+DEFAULT_GET_TIMEOUT = 5 # seconds
+DEFAULT_REDOWNLOAD_HOLDOFF = 60 * 60 * 6 # seconds
 NUM_RECENT_DOWNLOADS_TO_TRACK = 1000
 
 class DownloadURLReemitterModule(ReemitterModule):
@@ -19,20 +20,30 @@ class DownloadURLReemitterModule(ReemitterModule):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.recent_downloads = deque()
-        self.dls_to_track = NUM_RECENT_DOWNLOADS_TO_TRACK
 
     def is_in_recent_downloads(self, input_obj: URLObject):
         return input_obj.url in self.recent_downloads
 
-    def add_to_recent_downloads(self, input_obj: URLObject):
+    # List size method...
+    def add_to_recent_downloads_size(self, input_obj: URLObject):
         self.recent_downloads.append(input_obj.url)
-        while len(self.recent_downloads) > self.dls_to_track:
+        while len(self.recent_downloads) > NUM_RECENT_DOWNLOADS_TO_TRACK:
             self.recent_downloads.popleft()
     
+    # Time method
+    def add_to_recent_downloads_time(self, input_obj: URLObject):
+        self.recent_downloads.append( (time.time(), input_obj.url) )
+        timeout = time.time() - DEFAULT_REDOWNLOAD_HOLDOFF
+        while self.recent_downloads[0][0] < timeout:
+            self.recent_downloads.popleft()
+
+    add_to_recent_downloads = add_to_recent_downloads_time
+
     def handle_object(self, input_obj: URLObject, max_download: int,
             user_agents: Iterable[str],
             domain_blacklist: Iterable[str],
-            get_timeout: int = DEFAULT_GET_TIMEOUT) -> List[DownloadedObject]:
+            get_timeout: int = DEFAULT_GET_TIMEOUT
+            ) -> List[Union[DownloadedObject, LogEntry]]:
 
         # Make sure we didn't download this recently...
         if self.is_in_recent_downloads(input_obj):
