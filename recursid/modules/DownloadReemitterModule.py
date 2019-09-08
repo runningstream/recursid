@@ -21,22 +21,28 @@ class DownloadURLReemitterModule(ReemitterModule):
         super().__init__(*args, **kwargs)
         self.recent_downloads = deque()
 
-    def is_in_recent_downloads(self, input_obj: URLObject):
+    # List size method
+    def is_in_recent_downloads_size(self, input_obj: URLObject) -> bool:
         return input_obj.url in self.recent_downloads
 
-    # List size method...
-    def add_to_recent_downloads_size(self, input_obj: URLObject):
+    def add_to_recent_downloads_size(self, input_obj: URLObject) -> None:
         self.recent_downloads.append(input_obj.url)
         while len(self.recent_downloads) > NUM_RECENT_DOWNLOADS_TO_TRACK:
             self.recent_downloads.popleft()
     
     # Time method
-    def add_to_recent_downloads_time(self, input_obj: URLObject):
+    def is_in_recent_downloads_time(self, input_obj: URLObject) -> bool:
+        return any(filter(
+                lambda tup: tup[1] == input_obj.url, self.recent_downloads
+                ))
+    def add_to_recent_downloads_time(self, input_obj: URLObject) -> None:
         self.recent_downloads.append( (time.time(), input_obj.url) )
         timeout = time.time() - DEFAULT_REDOWNLOAD_HOLDOFF
         while self.recent_downloads[0][0] < timeout:
             self.recent_downloads.popleft()
 
+    # Set the methods to use...
+    is_in_recent_downloads = is_in_recent_downloads_time
     add_to_recent_downloads = add_to_recent_downloads_time
 
     def handle_object(self, input_obj: URLObject, max_download: int,
