@@ -13,6 +13,8 @@ from .BaseModules import ReemitterModule
 DEFAULT_GET_TIMEOUT = 5 # seconds
 DEFAULT_REDOWNLOAD_HOLDOFF = 60 * 60 * 6 # seconds
 NUM_RECENT_DOWNLOADS_TO_TRACK = 1000
+MAX_DLS_FROM_DOMAIN = 100
+DOMAIN_DL_HOLDOFF = 60 * 60 # seconds
 
 class DownloadURLReemitterModule(ReemitterModule):
     supported_objects = [URLObject]
@@ -20,11 +22,11 @@ class DownloadURLReemitterModule(ReemitterModule):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.recent_downloads = deque()
+        self.domain_draw = dict()
 
     # List size method
     def is_in_recent_downloads_size(self, input_obj: URLObject) -> bool:
         return input_obj.url in self.recent_downloads
-
     def add_to_recent_downloads_size(self, input_obj: URLObject) -> None:
         self.recent_downloads.append(input_obj.url)
         while len(self.recent_downloads) > NUM_RECENT_DOWNLOADS_TO_TRACK:
@@ -41,6 +43,37 @@ class DownloadURLReemitterModule(ReemitterModule):
         while self.recent_downloads[0][0] < timeout:
             self.recent_downloads.popleft()
 
+    # Limit downloads from a domain
+    def is_domain_overdrawn(self, domain: str, domain_overdraw: int) -> bool:
+        """
+        If we've seen a domain more than domain_overdraw times,
+        then return True.  Do drop off the domain_draw list, it must not be
+        seen for DOMAIN_DL_HOLDOFF time.
+        """
+        # In this case, we haven't seen the domain recently, we're good
+        if domain not in self.domain_draw:
+            return False
+
+        # Read the known values
+        last_time, cur_cnt = self.domain_draw[domain]
+
+        # In this case we're not overdrawn, we're good
+        if cur_cnt < domain_overdraw:
+            return False
+
+        # In this case we're overdrawn, and we saw the domain again,
+        # so keep the time up to date.  No need to update cur_cnt because
+        # we're not drawing from the domain, and we're already overdrawn...
+        # Keeping the time updated is important because it's a holdoff timer
+        self.domain_draw[domain] = (time.time(), cur_cnt)
+        return True
+
+    def add_to_domain_draw(self, domain: str) -> None:
+        cur_cnt = 0
+        if domain in self.domain_draw:
+            last_time, cur_cnt = self.domain_draw[domain]
+        self.domain_draw[domain] = (time.time(), cur_cnt + 1)
+
     # Set the methods to use...
     is_in_recent_downloads = is_in_recent_downloads_time
     add_to_recent_downloads = add_to_recent_downloads_time
@@ -48,6 +81,7 @@ class DownloadURLReemitterModule(ReemitterModule):
     def handle_object(self, input_obj: URLObject, max_download: int,
             user_agents: Iterable[str],
             domain_blacklist: Iterable[str],
+            domain_overdraw: int = MAX_DLS_FROM_DOMAIN,
             get_timeout: int = DEFAULT_GET_TIMEOUT
             ) -> List[Union[DownloadedObject, LogEntry]]:
 
@@ -66,6 +100,12 @@ class DownloadURLReemitterModule(ReemitterModule):
         if any(domain.endswith(bl_dom) for bl_dom in domain_blacklist):
             self.logger.info("Skipping download of {} - "
                     "domain is blacklisted".format(input_obj.url))
+            return []
+
+        # See if we've used the domain too much recently
+        if self.is_domain_overdrawn(domain, domain_overdraw):
+            self.logger.info("Skipping download of {} - domain is "
+                    "temporarily overdrawn".format(input_obj.url))
             return []
 
         # Complete all downloads
@@ -97,6 +137,7 @@ class DownloadURLReemitterModule(ReemitterModule):
         # We're about to return download info, so add this to the list of
         # successful recent downloads
         self.add_to_recent_downloads(input_obj)
+        self.add_to_domain_draw(domain)
 
         return unique_downloads + log_entries
 
