@@ -1,6 +1,6 @@
 import itertools as it
 import re
-from typing import Iterable
+from typing import Iterable, Union
 import urllib.parse
 
 from ..BuiltinObjects import FluentdRecord, URLObject, \
@@ -21,13 +21,27 @@ class URLParserReemitterModule(ReemitterModule):
         self.url_str_re = re.compile(re_str)
         self.url_bytes_re = re.compile(re_str.encode())
 
-    def handle_object(self, input_obj):
+    def handle_object(self,
+            input_obj: Union[FluentdRecord, DownloadedObject],
+            limit_url_count: int = None) -> URLObject:
+        """
+        Parse the input_obj for any potential URLs
+        Limit the return count to limit_url_count, if specified
+
+        Return URLObjects
+        """
+        #TODO don't limit URL returns in such a limited way
         if issubclass(input_obj.__class__, FluentdRecord):
-            return self.handle_fluentd_record(input_obj)
+            retval = self.handle_fluentd_record(input_obj)
         elif issubclass(input_obj.__class__, DownloadedObject):
-            return self.handle_downloaded_obj(input_obj)
+            retval = self.handle_downloaded_obj(input_obj)
         else:
             raise RuntimeError("Type not implemented")
+
+        if limit_url_count is not None:
+            return retval[:limit_url_count]
+
+        return retval
 
     def find_urls_in_str(self, data: str):
         """
