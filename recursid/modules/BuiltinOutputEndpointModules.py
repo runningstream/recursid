@@ -115,8 +115,8 @@ class S3StoreDownloadedObject(OutputEndpointModule):
                 )
 
     def handle_object(self, input_obj: DownloadedObject, 
-            filetype_contains: Optional[List[str]]=None,
             s3_bucket: str,
+            filetype_contains: Optional[List[str]]=None,
             aws_profile: Optional[str]=None,
             region_name: Optional[str]=None):
         """
