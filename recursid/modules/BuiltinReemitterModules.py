@@ -12,6 +12,11 @@ class LineDoubler(ReemitterModule):
     def handle_object(self, input_obj):
         return [LogEntry(input_obj.log_data + input_obj.log_data)]
 
+FLUENT_TYPE_MAP = {
+        "cowrie": ["input"],
+        "glastopf": ["http_body"],
+        "echo_and_log": ["data_ascii"],
+        }
 class URLParserReemitterModule(ReemitterModule):
     supported_objects = [FluentdRecord, DownloadedObject]
     def __init__(self, *args, **kwargs):
@@ -23,7 +28,9 @@ class URLParserReemitterModule(ReemitterModule):
 
     def handle_object(self,
             input_obj: Union[FluentdRecord, DownloadedObject],
-            limit_url_count: int = None) -> URLObject:
+            limit_url_count: int = None,
+            fluent_type_map: dict = FLUENT_TYPE_MAP
+            ) -> URLObject:
         """
         Parse the input_obj for any potential URLs
         Limit the return count to limit_url_count, if specified
@@ -32,7 +39,7 @@ class URLParserReemitterModule(ReemitterModule):
         """
         #TODO don't limit URL returns in such a limited way
         if issubclass(input_obj.__class__, FluentdRecord):
-            retval = self.handle_fluentd_record(input_obj)
+            retval = self.handle_fluentd_record(input_obj, fluent_type_map)
         elif issubclass(input_obj.__class__, DownloadedObject):
             retval = self.handle_downloaded_obj(input_obj)
         else:
@@ -70,20 +77,15 @@ class URLParserReemitterModule(ReemitterModule):
         url_set = set(self.find_urls_in_bytes(input_obj.content))
         return [URLObject(url) for url in url_set]
     
-    def handle_fluentd_record(self, input_obj: FluentdRecord) \
-            -> Iterable[URLObject]:
-        SEARCH_FIELDS_BY_TYPE = {
-                "cowrie": ["input"],
-                "glastopf": ["http_body"],
-                "echo_and_log": ["data_ascii"],
-                }
-        if input_obj.dat["type"] not in SEARCH_FIELDS_BY_TYPE:
+    def handle_fluentd_record(self, input_obj: FluentdRecord,
+            fluent_type_map: dict) -> Iterable[URLObject]:
+        if input_obj.dat["type"] not in fluent_type_map:
             self.logger.debug("No URL search fields for record type {}"
                     "".format(input_obj.dat["type"])
                     )
             return set()
 
-        search_fields = SEARCH_FIELDS_BY_TYPE[input_obj.dat["type"]]
+        search_fields = fluent_type_map[input_obj.dat["type"]]
         tosearch = (input_obj.dat[fld]
             for fld in input_obj.dat if fld in search_fields)
         urls = set(
