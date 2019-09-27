@@ -5,7 +5,8 @@ from .BuiltinInputEndpointModules import ReemitInputEndpointModule, \
         FluentdZMQInputEndpointModule
 from .BuiltinOutputEndpointModules import LogOutputEndpointModule, \
         LocalStoreDownloadedObject, S3StoreDownloadedObject, \
-        SQLLiteRememberDownloadedObjects, LogstashOutputEndpointModule
+        SQLLiteRememberDownloadedObjects, LogstashOutputEndpointModule, \
+        EmailOutputEndpointModule
 from .BuiltinReemitterModules import LineDoubler, URLParserReemitterModule
 from .DownloadReemitterModule import DownloadURLReemitterModule
 from .VirusTotalReemitterModule import VirusTotalReemitterModule
@@ -47,4 +48,4 @@ def registerOEM(module):
 
 [registerREM(cls) for cls in [LineDoubler, URLParserReemitterModule, DownloadURLReemitterModule, VirusTotalReemitterModule]]
 
-[registerOEM(cls) for cls in [LogOutputEndpointModule, LocalStoreDownloadedObject, S3StoreDownloadedObject, SQLLiteRememberDownloadedObjects, LogstashOutputEndpointModule]]
+[registerOEM(cls) for cls in [LogOutputEndpointModule, LocalStoreDownloadedObject, S3StoreDownloadedObject, SQLLiteRememberDownloadedObjects, LogstashOutputEndpointModule, EmailOutputEndpointModule]]

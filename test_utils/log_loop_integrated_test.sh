@@ -32,12 +32,19 @@ function run_test {
     if [ "$TEST_OUT" != "" ]; then
         echo "$1 Test Fail: "
         echo $TEST_OUT
+        return 1
     else
         echo "$1 Test Success"
+        return 0
     fi
 }
 
 echo "Beginning Integrated Testing"
-run_test thread
-run_test process
+run_test thread; RET1=$?
+run_test process; RET2=$?
 echo "Integrated Testing Complete"
+if [[ "$RET1" == "0" ]] && [[ "$RET2" == "0" ]]; then
+    exit 0
+fi
+
+exit 1

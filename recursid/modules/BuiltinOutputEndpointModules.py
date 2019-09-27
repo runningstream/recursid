@@ -1,8 +1,11 @@
 import binascii
 import datetime
+from email.message import EmailMessage
 import logging
 import os
 import os.path
+import re
+import smtplib
 import sqlite3
 import string
 import time
@@ -56,6 +59,48 @@ class LogstashOutputEndpointModule(OutputEndpointModule):
         self.logger.debug("Logstash logging: {}".format(input_obj))
         self.setup_logger(host, port)
         self.logstash_logger.info(str(input_obj))
+
+class EmailOutputEndpointModule(OutputEndpointModule):
+    """
+    Send email to an address for LogEntry objects matching a regex
+    Parameters:
+      search_regex - string - the regular expression to search log entries
+        for.  Matching log entries get sent via email.
+      smtp_server - string - the address of the SMTP server
+      smtp_port - integer - the port of the SMTP server (often 587)
+      smtp_user - string - the username for logging in to the SMTP server.
+        Passing no user skips login.
+      smtp_pass - string - the user's password for login
+      from_addr - string - the "from" address in the email
+      to_addr - string - the "to" address in the email
+      subject - string - a static subject line for the email, log entry data
+        gets placed in the message
+      use_tls - bool - True uses TLS for the connection (Default: True)
+    """
+    def handle_object(self, input_obj: LogEntry, search_regex: str,
+            smtp_server: str, smtp_port: int, smtp_pass: str, from_addr: str,
+            to_addr: str, subject: str,
+            smtp_user: Union[str, None] = None, use_tls: bool = True):
+        if not re.search(search_regex, str(input_obj)):
+            return
+        
+        msg = EmailMessage()
+        msg.set_content(str(input_obj))
+        msg["Subject"] = subject
+        msg["From"] = from_addr
+        msg["To"] = to_addr
+
+        try:
+            with smtplib.SMTP(host=smtp_server, port=smtp_port) as smtp_sock:
+                if use_tls:
+                    smtp_sock.starttls()
+                if smtp_user:
+                    smtp_sock.login(user=smtp_user, password=smtp_pass)
+                smtp_sock.send_message(msg)
+        except Exception as e:
+            self.logger.error("Error during email send attempt!")
+            self.logger.exception(e)
+            
 
 class LocalStoreDownloadedObject(OutputEndpointModule):
     supported_objects = [DownloadedObject]

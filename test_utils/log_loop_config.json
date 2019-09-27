@@ -22,6 +22,15 @@
     "OutputEndpointModules":
     [
         ["LogOutputEndpointModule", {"level": "INFO"}],
-        ["LogstashOutputEndpointModule", {"host": "localhost", "port": 15539}]
+        ["LogstashOutputEndpointModule", {"host": "localhost", "port": 15539}],
+        ["EmailOutputEndpointModule",
+            {
+                "search_regex": "Log", "smtp_server": "localhost",
+                "smtp_port": 1587,
+                "smtp_pass": "nopass", "from_addr": "nobody@localhost",
+                "to_addr": "nobody@localhost",
+                "subject": "Test subject", "use_tls": false
+            }
+        ]
     ]
 }
