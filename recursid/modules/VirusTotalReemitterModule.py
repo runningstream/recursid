@@ -104,9 +104,9 @@ class VirusTotalReemitterModule(ReemitterModule):
 
         response = self.submit_bin(input_obj, api_key)
 
-        return LogEntry("Submitted URL {} hash {} to VirusTotal "\
+        return [LogEntry("Submitted URL {} hash {} to VirusTotal "\
                 "with response code {} response {}".format(
                     input_obj.url, input_obj.hashdig, 
                     response["response_code"], response["verbose_msg"]
                     )
-                )
+                )]
