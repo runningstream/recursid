@@ -51,7 +51,7 @@ class DownloadedObject(BinaryBlobObject):
         self.url = convert_bytes_to_str(url)
         self.user_agent = user_agent
         self.hashdig = hashlib.sha256(content).hexdigest()
-        self.filetype = magic.from_buffer(content)
+        self.filetype = magic.from_buffer(content).lower()
 
     def str_content(self):
         return "URL: {}\nUser-Agent: {}\nFiletype: {}"\
