@@ -110,7 +110,7 @@ class S3StoreDownloadedObject(OutputEndpointModule):
         if not filetype_contains:
             return True
 
-        return any((ftype in input_obj.filetype)
+        return any((ftype.lower() in input_obj.filetype.lower())
                 for ftype in filetype_contains
                 )
 
