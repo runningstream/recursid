@@ -18,7 +18,8 @@ class MultithreadedFramework(BaseFramework):
         module = mod(self.start_ttl, 
                 send_obj_queue, recv_obj_queue, send_cmd_queue,
                 processing_lock)
-        proc = thr.Thread(target=module.main, args=args, kwargs=kwargs)
+        proc = thr.Thread(target=module.main, args=args, kwargs=kwargs,
+                name="Thread-{}".format(mod.__name__))
         proc.start()
         return {
                 "module": mod,

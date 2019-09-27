@@ -17,7 +17,8 @@ class MultiprocessFramework(BaseFramework):
         module = mod(self.start_ttl, 
                 send_obj_queue, recv_obj_queue, send_cmd_queue,
                 processing_lock)
-        proc = mp.Process(target=module.main, args=args, kwargs=kwargs)
+        proc = mp.Process(target=module.main, args=args, kwargs=kwargs,
+                name="Process-{}".format(mod.__name__))
         proc.start()
         return {
                 "module": mod,
