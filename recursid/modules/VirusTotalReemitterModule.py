@@ -29,7 +29,7 @@ class VirusTotalReemitterModule(ReemitterModule):
         # Filter out only certain file types...
         filetype_keywords = ["Executable"]
         found_keywords = [kw for kw in filetype_keywords
-                if kw in input_obj.filetype]
+                if kw.lower() in input_obj.filetype.lower()]
         if found_keywords:
             return True
         return False
