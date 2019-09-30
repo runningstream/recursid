@@ -92,21 +92,22 @@ class VirusTotalReemitterModule(ReemitterModule):
         If the input_obj is of a useful file type, and there's not already
         a VirusTotal entry for its hash, upload it to VirusTotal
         """
+        log_text = ""
         if not self.is_right_filetype(input_obj):
-            self.logger.info("URL was wrong type: {}".format(input_obj.url))
-            return None
+            log_text = "URL was wrong type: {}".format(input_obj.url)
 
-        if self.report_present(input_obj, api_key):
-            self.logger.info("Hash was already submitted: {}".format(
+        elif self.report_present(input_obj, api_key):
+            log_text = "Hash was already submitted: {}".format(
                 input_obj.hashdig)
-                )
-            return None
 
-        response = self.submit_bin(input_obj, api_key)
+        else:
+            response = self.submit_bin(input_obj, api_key)
 
-        return [LogEntry("Submitted URL {} hash {} to VirusTotal "\
+            log_text = "Submitted URL {} hash {} to VirusTotal "\
                 "with response code {} response {}".format(
                     input_obj.url, input_obj.hashdig, 
                     response["response_code"], response["verbose_msg"]
                     )
-                )]
+
+        self.logger.debug(log_text)
+        return [LogEntry(log_text)]

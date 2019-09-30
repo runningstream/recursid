@@ -77,6 +77,7 @@ class EmailOutputEndpointModule(OutputEndpointModule):
         gets placed in the message
       use_tls - bool - True uses TLS for the connection (Default: True)
     """
+    supported_objects = [LogEntry]
     def handle_object(self, input_obj: LogEntry, search_regex: str,
             smtp_server: str, smtp_port: int, smtp_pass: str, from_addr: str,
             to_addr: str, subject: str,

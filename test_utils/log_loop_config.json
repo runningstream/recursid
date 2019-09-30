@@ -25,7 +25,7 @@
         ["LogstashOutputEndpointModule", {"host": "localhost", "port": 15539}],
         ["EmailOutputEndpointModule",
             {
-                "search_regex": "Log", "smtp_server": "localhost",
+                "search_regex": "Line 4Line 4Line 4Line 4Line 4", "smtp_server": "localhost",
                 "smtp_port": 1587,
                 "smtp_pass": "nopass", "from_addr": "nobody@localhost",
                 "to_addr": "nobody@localhost",
