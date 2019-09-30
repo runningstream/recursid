@@ -1,0 +1,26 @@
+{
+    "start_ttl": 6,
+    "InputEndpointModules":
+    [
+        ["EmitLinesInputEndpointModule",
+            {"text_block": "Input Line!\nInput line 2\nInput line 3"}]
+    ],
+    "ReemitterModules":
+    [
+    ],
+    "OutputEndpointModules":
+    [
+        ["EmailOutputEndpointModule",
+            {
+                "search_regex": "ine",
+                "smtp_server": "{{ smtp_server }}",
+                "smtp_port": {{ smtp_port }},
+                "smtp_user": "{{ smtp_user }}",
+                "smtp_pass": "{{ smtp_pass }}",
+                "from_addr": "{{ email_from_addr }}",
+                "to_addr": "{{ email_to_addr }}",
+                "subject": "Recursid Email Output"
+            }
+        ]
+    ]
+}
